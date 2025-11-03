@@ -1,0 +1,16 @@
+[
+    {
+        "role":" DATA Scientist",
+        "text":"A data Scientist analyzes complex data using python,statistic, and machine learning.Recommended roadmap:Python->statistic->Machine Learning->Deep Learning->Data Visualization."
+ 
+    },
+    {
+        "role":"AI ENGINEER",
+        "text":"AN AI Engineer designs intelligent system using python, Tensorflow,pytorch and  NLP. Recomended roadmap: python->Linear Algebra->Neural Network->Deep Learning"
+ 
+    },
+    {
+        "role":" Web Developer",
+        "text":" A Web developer Engineer manages CI/CD pipelones and automates Kubernets, and Cloud service Recomanded Roadmap: Linux->Git->Docker->Jenkins->Kubernets->Cloud"
+    }
+]
