@@ -5,9 +5,9 @@ from pinecone import Pinecone,ServerlessSpec
 from langchain_openai import AzureOpenAIEmbeddings # pyright: ignore[reportMissingImports]
  
 #load keys
-load_dotenv()
-pc=Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
-index_name="career-guidance-bot"
+# load_dotenv()
+# pc=Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
+# index_name="career-guidance-bot"
  
 # Create index if not exists
 if index_name not in[i['name']for i in pc.list_indexes()]:
