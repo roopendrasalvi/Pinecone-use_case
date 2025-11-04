@@ -3,7 +3,7 @@ import json
 from dotenv import load_dotenv
 from langchain_openai import AzureChatOpenAI,AzureOpenAIEmbeddings # pyright: ignore[reportMissingImports]
 from langchain.vectorstores import Pinecone
-# from langchain.chains import RetrievalQA
+from langchain.chains import RetrievalQA
 from langchain_pinecone import Pinecone, PineconeVectorStore
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from pinecone import Pinecone, ServerlessSpec
