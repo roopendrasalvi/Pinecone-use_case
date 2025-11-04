@@ -7,6 +7,7 @@ from langchain.chains import RetrievalQA
 from langchain_pinecone import Pinecone, PineconeVectorStore
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from pinecone import Pinecone, ServerlessSpec
+from fpdf import FPDF
  
 #load keys
 load_dotenv()
@@ -14,6 +15,7 @@ load_dotenv()
 #connect Pinecone
 pc=Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
 index=pc.Index("career-guidance-bot")
+pdf = FPDF()
  
 #vector store +embeddings
 
@@ -64,14 +66,28 @@ def get_answer(query:str)->str:
     response=qa_chain.run(query)
     return response
  
-#Optional console testing
+def generate_career_plan():
+    """ Generate a career plan """
+    prompt="Generate a detailed career plan for a student interested in technology and innovation. Make sure the characters in response are not encoded and are in plain string format."
+    response=qa_chain.run(prompt)
+    pdf.add_page()
+    pdf.set_font("Arial", size=12)
+    pdf.multi_cell(0, 10, response)
+    pdf.output("career_plan.pdf")
+    return response
  
 if __name__=="__main__":
-    print("AI career chatboat(type 'exit' to stop)")
+    print("AI career chatbot(type 'exit' to stop)")
     while True:
         user_input=input("you:")
         if user_input.lower() in ["exit","quit"]:
             print("bot:Goodbye!")
             break
-        answer=get_answer(user_input)
-        print("bot",answer)
+        elif 'generate' in user_input.lower():
+            print("bot:Generating career plan...")
+            answer=generate_career_plan()
+            print("bot:",answer)
+
+        else:
+            answer=get_answer(user_input)
+            print("bot",answer)
