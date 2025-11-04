@@ -8,6 +8,7 @@ from langchain_pinecone import Pinecone, PineconeVectorStore
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from pinecone import Pinecone, ServerlessSpec
 from fpdf import FPDF
+import requests
  
 #load keys
 load_dotenv()
@@ -18,6 +19,10 @@ index=pc.Index("career-guidance-bot")
 pdf = FPDF()
  
 #vector store +embeddings
+
+url = ("https://newsapi.org/v2/everything/?q=career in ai&apiKey=429c1ae1f3c54140a4699f10c55c696f")
+
+
 
 with open("aarti_proj/data/career_docs.json","r") as f:
     text=json.load(f)
@@ -87,7 +92,14 @@ if __name__=="__main__":
             print("bot:Generating career plan...")
             answer=generate_career_plan()
             print("bot:",answer)
-
+        elif 'get news' in user_input.lower():
+            news_list = []
+            print("bot:Fetching latest news...")
+            answer = requests.get(url).json()
+            for elems in answer['articles']:
+                news_list.append(elems['title'])
+            print("bot:",news_list )
+            
         else:
             answer=get_answer(user_input)
             print("bot",answer)
