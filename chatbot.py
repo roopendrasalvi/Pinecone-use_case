@@ -16,6 +16,7 @@ load_dotenv()
 #connect Pinecone
 pc=Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
 index=pc.Index("career-guidance-bot")
+    
 pdf = FPDF()
  
 #vector store +embeddings
@@ -24,7 +25,7 @@ url = ("https://newsapi.org/v2/everything/?q=career in ai&apiKey=429c1ae1f3c5414
 
 
 
-with open("aarti_proj/data/career_docs.json","r") as f:
+with open("data/career_docs.json","r") as f:
     text=json.load(f)
 
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=20)

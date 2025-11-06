@@ -22,7 +22,7 @@ if index_name not in[i['name']for i in pc.list_indexes()]:
 index=pc.Index(index_name)
  
 #load json data
-with open("aarti_proj/data/career_docs.json","r") as f:
+with open("data/career_docs.json","r") as f:
     docs=json.load(f)
  
 #Embeddings
